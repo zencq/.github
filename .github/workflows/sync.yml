@@ -31,7 +31,7 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Sync Files
+      - name: Sync Shared Files
         uses: N6REJ/repo-file-sync-action@f815829feca285fc2800ce183fbd6f59db85ca33 # v2026.10.10+0
         with:
           GH_PAT: ${{ secrets.SYNC_TOKEN }}
