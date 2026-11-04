@@ -6,7 +6,8 @@ applyTo: "**"
 
 # Formatting and linting
 
-- The rules live in `.editorconfig`, which is synced from `zencq/.github` as well: edit it there. LF line endings on every OS (enforced for commits by `.gitattributes`), 4-space indentation in `.cs` files, and 2 spaces in csproj/props/json/md files.
+- `.editorconfig`, `.gitattributes`, and the Qlty configuration (`.qlty/qlty.toml`, `.qlty/configs/`) are synced from `zencq/.github` as well: edit them there.
+- The rules live in `.editorconfig`: LF line endings on every OS (enforced for commits by `.gitattributes`), 4-space indentation in `.cs` files, and 2 spaces in csproj/props/json/md files.
 - The spell-checker dictionary is `.exclusion.dic`; add the domain words it flags there.
 - Run `dotnet format` before committing (see `commands.instructions.md`); the build doesn't flag whitespace, so CI checks it with `dotnet format --verify-no-changes`. The naming rules are only suggestions that no check enforces, so follow them anyway.
 - Qlty (`.qlty/qlty.toml`) lints the workflows, Markdown, `.editorconfig` compliance, and secrets; it has no C# linter. Install the Qlty CLI from [the Qlty docs](https://docs.qlty.sh/cli/quickstart#install-the-cli) if `qlty` isn't available. Before finishing, run these and fix what they report:
