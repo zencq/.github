@@ -57,10 +57,9 @@ applyTo: "**/*.cs"
 
 ## Member order
 
-- Order members by kind: constants and fields, properties, events, constructors, methods.
-- Within each kind, order by access: public, protected, internal, private. Among fields with the same access, constants come first, then static readonly fields, then instance fields. For example, a `protected readonly` field goes before a `private static readonly` field.
-- Methods that belong to a lifecycle come first, in lifecycle order regardless of access (for example `OnNavigatedTo` first and `Dispose` last). The other methods follow by access, and within the same access by the stepdown rule: each method is followed by the methods it calls, in the order it first calls them. Keep each method at one level of detail: a higher-level method reads as the workflow, and the details live in the methods it calls.
-- Put a section comment before each group: `// Constants` (constants and static readonly fields), `// Fields`, `// Properties`, `// Events`, `// Constructors`, `// Methods`.
+- Group members by kind, each group with its section comment, in this order: `// Constants` (constants and static readonly fields), `// Fields`, `// Properties`, `// Events`, `// Constructors`, `// Methods`.
+- Within each group, public and protected members come before internal and private ones.
+- Methods that belong to a lifecycle come first, in lifecycle order (for example `OnNavigatedTo` first and `Dispose` last). The internal and private methods follow the stepdown rule: each comes after the first method that calls it, in the order they are called. Keep each method at one level of detail: a higher-level method reads as the workflow, and the details live in the methods it calls.
 - Don't use non-private mutable fields.
 
 ## Comments
