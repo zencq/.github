@@ -16,6 +16,7 @@ The single source of the agent instructions and the repository setup files that 
 | `zencq/zenin-integration-nms` | dotnet, library |
 | `zencq/zenin-integration-nms-procedural` | dotnet, library |
 | `zencq/nomnom` | dotnet |
+| `zencq/Articuno` | dotnet |
 
 ## How the sync works
 
