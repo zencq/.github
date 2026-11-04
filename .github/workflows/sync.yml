@@ -21,7 +21,7 @@ jobs:
   sync:
     name: Sync
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 10
     # The cross-repository writes use the SYNC_TOKEN secret, not GITHUB_TOKEN, which only reaches this repository.
     permissions:
       contents: read
