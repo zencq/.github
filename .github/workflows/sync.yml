@@ -1,0 +1,45 @@
+name: Sync shared files
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".editorconfig"
+      - "instructions/**"
+      - ".github/sync.yml"
+      - ".github/workflows/sync.yml"
+  workflow_dispatch:
+
+# Queue runs instead of cancelling them, so a sync is never left half-done across repositories.
+concurrency:
+  group: sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    name: Open sync pull requests
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    # The cross-repository writes use the SYNC_TOKEN secret, not GITHUB_TOKEN, which only reaches this repository.
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Sync files
+        uses: BetaHuhn/repo-file-sync-action@8b92be3375cf1d1b0cd579af488a9255572e4619 # v1.21.1
+        with:
+          GH_PAT: ${{ secrets.SYNC_TOKEN }}
+          IS_FINE_GRAINED: true
+          CONFIG_PATH: .github/sync.yml
+          COMMIT_PREFIX: "chore:"
+          COMMIT_EACH_FILE: false
+          BRANCH_PREFIX: sync/shared-instructions
+          PR_LABELS: false
+          PR_BODY: |
+            Shared agent instructions and `.editorconfig` from [zencq/.github](https://github.com/zencq/.github).
+            Don't edit these files here; change them in `zencq/.github`. If a new shared file appeared or one was removed, update `CLAUDE.md` and `AGENTS.md` in this pull request.

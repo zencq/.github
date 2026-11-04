@@ -1,0 +1,25 @@
+# Config of BetaHuhn/repo-file-sync-action, used by .github/workflows/sync.yml.
+# Every repository gets the dotnet layer and .editorconfig; NuGet libraries also get the library layer.
+# deleteOrphaned removes a synced file from the target once it is gone here.
+
+group:
+  - files:
+      - source: instructions/dotnet/
+        dest: .github/instructions/shared/dotnet/
+        deleteOrphaned: true
+      - source: .editorconfig
+        dest: .editorconfig
+    repos: |
+      zencq/zenin-common
+      zencq/zenin-integration-nms
+      zencq/zenin-integration-nms-procedural
+      zencq/nomnom
+
+  - files:
+      - source: instructions/library/
+        dest: .github/instructions/shared/library/
+        deleteOrphaned: true
+    repos: |
+      zencq/zenin-common
+      zencq/zenin-integration-nms
+      zencq/zenin-integration-nms-procedural
