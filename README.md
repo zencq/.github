@@ -8,7 +8,7 @@ The single source of the agent instructions and the repository setup files that 
 | `instructions/library/` | Rules only for NuGet libraries: public API tracking, trimming and AOT, packages, releases | `.github/instructions/shared/library/` in the libraries |
 | `.editorconfig` | Formatting and naming rules | the same path in every repository below |
 | `.gitattributes` | LF line endings | the same path in every repository below |
-| `.qlty/qlty.toml`, `.qlty/.gitignore`, `.qlty/configs/` | Qlty linters and their settings | the same paths in every repository below |
+| `.qlty/` | Qlty linters and their settings | the same paths in every repository below |
 
 | Repository | Layers |
 | --- | --- |
