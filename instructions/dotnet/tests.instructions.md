@@ -8,7 +8,7 @@ applyTo: "**/*.cs"
 
 ## Conventions
 
-- Tests use MSTest 4, in a test project per project under test.
+- Tests use MSTest, in a test project per project under `/tests`.
 - Test method names describe behavior, as `Method_Scenario_Expectation`, with `// Arrange / // Act / // Assert` sections; test file and class names mirror the class under test (`Foo.cs` becomes `FooTests.cs`). A class split into partial files still gets one test file (`OrderBook.Export.cs` becomes `OrderBookTests.cs`).
 - Don't call real web services. Move request-independent logic into `internal` methods and test them directly.
 - Tests run in parallel at method level (`[assembly: Parallelize(Scope = ExecutionScope.MethodLevel)]` in each test project), so they must not share mutable state.
