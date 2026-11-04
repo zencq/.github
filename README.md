@@ -32,14 +32,19 @@ The action writes to the other repositories with the `SYNC_TOKEN` secret: a fine
 
 ## Community defaults
 
-GitHub uses these files for every public zencq repository that has no file of the same kind, so they are not synced. They hold nothing specific to one repository.
+The files in `.github/` (besides the workflows and Dependabot) are the default community files: GitHub uses them for every public zencq repository that has no file of the same kind, so they are not synced. They hold nothing specific to one repository and link only to the shared Discord.
 
 | File | Purpose |
 | --- | --- |
-| `CODE_OF_CONDUCT.md` | Contributor Covenant, with reports going to the Discord moderators |
-| `SECURITY.md` | How to report a vulnerability privately |
-| `FUNDING.yml` | The sponsor button |
-| `ISSUE_TEMPLATE/` | Bug report and feature request forms, and a contact link to Discord |
+| `.github/CODE_OF_CONDUCT.md` | Contributor Covenant, with reports going to the Discord moderators |
+| `.github/CONTRIBUTING.md` | How to contribute a change |
+| `.github/SUPPORT.md` | Where to ask for help |
+| `.github/ACCESSIBILITY.md` | Accessibility goals, guidelines, and how to report barriers |
+| `.github/SECURITY.md` | How to report a vulnerability privately |
+| `.github/FUNDING.yml` | The sponsor button |
+| `.github/pull_request_template.md` | The pull request description |
+| `.github/ISSUE_TEMPLATE/` | Bug report and feature request forms, and a contact link to Discord |
+| `.github/DISCUSSION_TEMPLATE/` | Forms for the General, Ideas, and Q&A discussion categories |
 
-- A repository's own `.github/ISSUE_TEMPLATE/` folder replaces this whole folder, its `config.yml` included.
-- Files that link to one repository's docs, discussions, or packages stay in that repository: `CONTRIBUTING.md`, `SUPPORT.md`, `ACCESSIBILITY.md`, `CODEOWNERS`, the pull request template, and the discussion forms.
+- A repository's own `.github/ISSUE_TEMPLATE/` or `.github/DISCUSSION_TEMPLATE/` folder replaces the whole default folder.
+- A repository keeps its own version of a file only when it needs to say something specific to it. `CODEOWNERS` can't be a default and stays in each repository.

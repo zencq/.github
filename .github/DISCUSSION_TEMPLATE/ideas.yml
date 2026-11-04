@@ -1,0 +1,31 @@
+title: "[Idea] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this category to discuss early-stage ideas. For a specific feature request, open an issue instead.
+        For suspected security vulnerabilities, follow the private reporting instructions in the security policy (`SECURITY.md`). Do not post them here.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem or need would this address?
+      description: Describe the use case and who would benefit.
+    validations:
+      required: true
+
+  - type: textarea
+    id: idea
+    attributes:
+      label: What is your idea?
+      description: Describe a possible solution. It’s fine if the idea is still rough.
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Alternatives or additional context
+      description: Mention alternatives you considered or anything else that might help the discussion.
+    validations:
+      required: false

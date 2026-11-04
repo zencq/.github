@@ -1,0 +1,23 @@
+title: "[General] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this category for general discussion. For usage questions, choose Q&A. For bug reports or specific feature requests, open an issue instead.
+        For suspected security vulnerabilities, follow the private reporting instructions in the security policy (`SECURITY.md`). Do not post them here.
+
+  - type: textarea
+    id: topic
+    attributes:
+      label: What would you like to discuss?
+      description: Explain the topic or question.
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Include useful context, with personal or sensitive information removed.
+    validations:
+      required: false

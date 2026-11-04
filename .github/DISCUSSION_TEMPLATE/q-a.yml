@@ -1,0 +1,31 @@
+title: "[Question] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this category for usage questions and general help. For a bug report or specific feature request, open an issue instead.
+        For suspected security vulnerabilities, follow the private reporting instructions in the security policy (`SECURITY.md`). Do not post them here.
+
+  - type: textarea
+    id: question
+    attributes:
+      label: What are you trying to do?
+      description: Describe your question or what you need help with.
+    validations:
+      required: true
+
+  - type: textarea
+    id: tried
+    attributes:
+      label: What have you tried?
+      description: Include relevant steps or code, with personal or sensitive information removed.
+    validations:
+      required: false
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Include relevant versions, such as the version you use, the .NET SDK, and the operating system.
+    validations:
+      required: false
