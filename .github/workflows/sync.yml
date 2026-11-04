@@ -11,7 +11,7 @@ on:
       - ".qlty/.gitignore"
       - ".qlty/configs/**"
       - "instructions/**"
-      - ".github/config/sync.yml"
+      - ".github/workflows/config/sync.yml"
       - ".github/workflows/sync.yml"
   workflow_dispatch:
 
@@ -39,7 +39,7 @@ jobs:
         with:
           GH_PAT: ${{ secrets.SYNC_TOKEN }}
           IS_FINE_GRAINED: true
-          CONFIG_PATH: .github/config/sync.yml
+          CONFIG_PATH: .github/workflows/config/sync.yml
           COMMIT_PREFIX: "chore:"
           COMMIT_EACH_FILE: false
           BRANCH_PREFIX: sync/shared-instructions
