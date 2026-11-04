@@ -9,7 +9,7 @@ applyTo: "**/*.cs,**/PublicAPI.*.txt"
 ## Compatibility
 
 - Avoid unnecessary public API churn, and keep binary and source compatibility in mind for package consumers.
-- Add public API only for a current need of the `Zenin` framework or its consumers; every public member is a compatibility commitment. Keep everything else `internal` or `private`.
+- Add public API only for a current need of the package's consumers, as each repository defines them in its own instructions; every public member is a compatibility commitment. Keep everything else `internal` or `private`.
 
 ## Documentation
 
