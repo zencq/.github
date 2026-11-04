@@ -22,6 +22,7 @@ group:
       zencq/zenin-integration-nms
       zencq/zenin-integration-nms-procedural
       zencq/nomnom
+      zencq/Articuno
 
   - files:
       - source: instructions/library/
