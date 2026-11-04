@@ -6,8 +6,12 @@ on:
       - main
     paths:
       - ".editorconfig"
+      - ".gitattributes"
+      - ".qlty/qlty.toml"
+      - ".qlty/.gitignore"
+      - ".qlty/configs/**"
       - "instructions/**"
-      - ".github/sync.yml"
+      - ".github/config/sync.yml"
       - ".github/workflows/sync.yml"
   workflow_dispatch:
 
@@ -18,7 +22,7 @@ concurrency:
 
 jobs:
   sync:
-    name: Open sync pull requests
+    name: Sync
     runs-on: ubuntu-latest
     timeout-minutes: 15
     # The cross-repository writes use the SYNC_TOKEN secret, not GITHUB_TOKEN, which only reaches this repository.
@@ -31,15 +35,15 @@ jobs:
           persist-credentials: false
 
       - name: Sync files
-        uses: BetaHuhn/repo-file-sync-action@8b92be3375cf1d1b0cd579af488a9255572e4619 # v1.21.1
+        uses: N6REJ/repo-file-sync-action@f815829feca285fc2800ce183fbd6f59db85ca33 # v2026.10.10+0
         with:
           GH_PAT: ${{ secrets.SYNC_TOKEN }}
           IS_FINE_GRAINED: true
-          CONFIG_PATH: .github/sync.yml
+          CONFIG_PATH: .github/config/sync.yml
           COMMIT_PREFIX: "chore:"
           COMMIT_EACH_FILE: false
           BRANCH_PREFIX: sync/shared-instructions
           PR_LABELS: false
           PR_BODY: |
-            Shared agent instructions and `.editorconfig` from [zencq/.github](https://github.com/zencq/.github).
+            Shared agent instructions and repository setup files (`.editorconfig`, `.gitattributes`, `.qlty/`) from [zencq/.github](https://github.com/zencq/.github).
             Don't edit these files here; change them in `zencq/.github`. If a new shared file appeared or one was removed, update `CLAUDE.md` and `AGENTS.md` in this pull request.
