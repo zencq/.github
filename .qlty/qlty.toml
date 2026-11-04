@@ -6,6 +6,7 @@ config_version = "0"
 
 test_patterns = [
   "tests/**",
+  "**/*.Tests/**",
 ]
 
 
