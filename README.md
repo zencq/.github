@@ -27,5 +27,5 @@ The action writes to the other repositories with the `SYNC_TOKEN` secret: a fine
 
 - Edit the files here, never the synced copies; the next sync overwrites them.
 - Shared files hold no repository-specific names. A repository adds its own facts in its own `.github/instructions/` files, which may add to a shared topic but never contradict it. The full authoring rules are in `instructions/dotnet/instructions.instructions.md`.
-- Shared setup files hold no repository-specific settings either; for example, the Qlty test patterns match both a `tests/` folder and `*.Tests` projects anywhere.
+- Shared setup files hold no repository-specific settings either. A repository whose layout doesn't fit them (such as tests outside `tests/`) changes its layout, not the shared file.
 - To add a repository, add it to `.github/config/sync.yml` and to the table above.
