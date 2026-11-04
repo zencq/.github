@@ -1,6 +1,6 @@
 # zencq/.github
 
-The single source of the agent instructions and the repository setup files that the zencq .NET repositories share.
+The single source of the agent instructions and the repository setup files that the zencq .NET repositories share, and the default community files of every zencq repository.
 
 | Folder | Contents | Synced to |
 | --- | --- | --- |
@@ -19,7 +19,7 @@ The single source of the agent instructions and the repository setup files that 
 
 ## How the sync works
 
-On every push to `main` that changes these files, `.github/workflows/sync.yml` runs [repo-file-sync-action](https://github.com/N6REJ/repo-file-sync-action) with the mapping in `.github/config/sync.yml`, and opens (or updates) one pull request in each repository whose copy differs. Files removed here are removed there too. The workflow can also be started by hand.
+On every push to `main` that changes these files, `.github/workflows/sync.yml` runs [repo-file-sync-action](https://github.com/N6REJ/repo-file-sync-action) with the mapping in `.github/workflows/config/sync.yml`, and opens (or updates) one pull request in each repository whose copy differs. Files removed here are removed there too. The workflow can also be started by hand.
 
 The action writes to the other repositories with the `SYNC_TOKEN` secret: a fine-grained personal access token owned by `zencq`, limited to the repositories above, with read and write access to **Contents** and **Pull requests**.
 
@@ -28,4 +28,18 @@ The action writes to the other repositories with the `SYNC_TOKEN` secret: a fine
 - Edit the files here, never the synced copies; the next sync overwrites them.
 - Shared files hold no repository-specific names. A repository adds its own facts in its own `.github/instructions/` files, which may add to a shared topic but never contradict it. The full authoring rules are in `instructions/dotnet/instructions.instructions.md`.
 - Shared setup files hold no repository-specific settings either. A repository whose layout doesn't fit them (such as tests outside `tests/`) changes its layout, not the shared file.
-- To add a repository, add it to `.github/config/sync.yml` and to the table above.
+- To add a repository, add it to `.github/workflows/config/sync.yml` and to the table above.
+
+## Community defaults
+
+GitHub uses these files for every public zencq repository that has no file of the same kind, so they are not synced. They hold nothing specific to one repository.
+
+| File | Purpose |
+| --- | --- |
+| `CODE_OF_CONDUCT.md` | Contributor Covenant, with reports going to the Discord moderators |
+| `SECURITY.md` | How to report a vulnerability privately |
+| `FUNDING.yml` | The sponsor button |
+| `ISSUE_TEMPLATE/` | Bug report and feature request forms, and a contact link to Discord |
+
+- A repository's own `.github/ISSUE_TEMPLATE/` folder replaces this whole folder, its `config.yml` included.
+- Files that link to one repository's docs, discussions, or packages stay in that repository: `CONTRIBUTING.md`, `SUPPORT.md`, `ACCESSIBILITY.md`, `CODEOWNERS`, the pull request template, and the discussion forms.
