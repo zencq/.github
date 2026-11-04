@@ -6,8 +6,8 @@ Thanks for your interest in contributing to a zencq project! Contributions that 
 
 - Check existing issues and pull requests before starting substantial work.
 - For larger changes, open an issue first to discuss the approach and how it fits the scope of the repository.
-- Please follow our code of conduct (`CODE_OF_CONDUCT.md`).
-- For security vulnerabilities, follow the security policy (`SECURITY.md`); please don't report them publicly.
+- Please follow our [code of conduct](https://github.com/zencq/.github/blob/HEAD/.github/CODE_OF_CONDUCT.md).
+- For security vulnerabilities, follow the [security policy](https://github.com/zencq/.github/blob/HEAD/.github/SECURITY.md); please don't report them publicly.
 
 ## Making a change
 

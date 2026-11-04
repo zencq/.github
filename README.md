@@ -32,7 +32,7 @@ The action writes to the other repositories with the `SYNC_TOKEN` secret: a fine
 
 ## Community defaults
 
-The files in `.github/` (besides the workflows and Dependabot) are the default community files: GitHub uses them for every public zencq repository that has no file of the same kind, so they are not synced. They hold nothing specific to one repository and link only to the shared Discord.
+The files in `.github/` (besides the workflows and Dependabot) are the default community files: GitHub uses them for every public zencq repository that has no file of the same kind, so they are not synced. They hold nothing specific to one repository: they link only to the shared Discord and to each other by absolute URL (`https://github.com/zencq/.github/blob/HEAD/.github/...`), because relative links would resolve inside the repository that shows them.
 
 | File | Purpose |
 | --- | --- |

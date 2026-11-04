@@ -12,7 +12,7 @@
 
 ## Validation
 
-- [ ] I followed the contributing guide (`CONTRIBUTING.md`).
+- [ ] I followed the [contributing guide](https://github.com/zencq/.github/blob/HEAD/.github/CONTRIBUTING.md).
 - [ ] I added or updated tests where necessary.
 - [ ] All existing and new tests pass.
 - [ ] Required CI checks pass.

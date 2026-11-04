@@ -48,7 +48,7 @@ A repository may list further barriers in its own documentation.
 - Follow the guidelines above that apply to your change.
 - Describe images and diagrams, and write meaningful link text and error messages.
 - Contributions that improve accessibility, including documentation, examples, user interfaces, and API design, are welcome.
-- Follow the contributing guide (`CONTRIBUTING.md`) and the code of conduct (`CODE_OF_CONDUCT.md`).
+- Follow the [contributing guide](https://github.com/zencq/.github/blob/HEAD/.github/CONTRIBUTING.md) and the [code of conduct](https://github.com/zencq/.github/blob/HEAD/.github/CODE_OF_CONDUCT.md).
 - Participation is asynchronous, so real-time communication is never required.
 
 ## Reporting accessibility issues
@@ -62,7 +62,7 @@ Please include:
 - The assistive technology or tools you used, if applicable
 - Any suggested improvement
 
-Do not include personal or sensitive information. We make a best effort to address reports promptly but don't guarantee a specific timeframe. Security vulnerabilities should go through the security policy (`SECURITY.md`) instead.
+Do not include personal or sensitive information. We make a best effort to address reports promptly but don't guarantee a specific timeframe. Security vulnerabilities should go through the [security policy](https://github.com/zencq/.github/blob/HEAD/.github/SECURITY.md) instead.
 
 ## Ownership
 
@@ -71,3 +71,10 @@ The project maintainers (members of the Developer role on Discord) are responsib
 ## Maintenance
 
 We review this page when we make significant changes to documentation, tooling, or the contribution process, and update it as known barriers are resolved or found. Suggestions to improve it are welcome through the channels above.
+
+## Related documents
+
+- [Contributing](https://github.com/zencq/.github/blob/HEAD/.github/CONTRIBUTING.md)
+- [Code of Conduct](https://github.com/zencq/.github/blob/HEAD/.github/CODE_OF_CONDUCT.md)
+- [Getting Help](https://github.com/zencq/.github/blob/HEAD/.github/SUPPORT.md)
+- [Security Policy](https://github.com/zencq/.github/blob/HEAD/.github/SECURITY.md)

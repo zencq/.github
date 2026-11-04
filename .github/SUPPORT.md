@@ -8,6 +8,6 @@ When asking, include relevant details such as the version you use, the .NET SDK 
 
 Use the repository's issues for specific bug reports and feature requests. Keep reports focused and include steps to reproduce bugs when possible.
 
-For suspected security vulnerabilities, do not open a public discussion or issue. Follow the private reporting instructions in the security policy (`SECURITY.md`).
+For suspected security vulnerabilities, do not open a public discussion or issue. Follow the private reporting instructions in the [security policy](https://github.com/zencq/.github/blob/HEAD/.github/SECURITY.md).
 
-Please follow our code of conduct (`CODE_OF_CONDUCT.md`) when communicating with the community.
+Please follow our [code of conduct](https://github.com/zencq/.github/blob/HEAD/.github/CODE_OF_CONDUCT.md) when communicating with the community.
