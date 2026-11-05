@@ -13,3 +13,4 @@ applyTo: "**"
 - `docs/` is the usage guide of all packages: `docs/README.md` lists the pages and the behavior they share, and each page covers one topic with examples. Update the affected pages with public API or behavior changes. The package `README.md` links to it by absolute URL, since relative links don't work on NuGet.org.
 - Shared package metadata (authors, copyright, license, repository URL, tags, symbol packages) lives in `Directory.Build.props`; per-package metadata (`Description`, `PackageReleaseNotes`), SourceLink, and the README/CHANGELOG packing live in each csproj. Preserve them unless the task says otherwise.
 - Every dependency must be trim- and AOT-compatible.
+- Always build with the latest GA .NET SDK. Don't add a `global.json` that pins the SDK; every CI job installs `dotnet-version: latest`, and a test matrix also installs the version it tests, for that version's runtime.
