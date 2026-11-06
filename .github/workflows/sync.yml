@@ -11,6 +11,11 @@ on:
       - ".qlty/**"
       - "instructions/**"
   workflow_dispatch:
+    inputs:
+      replace-kept-files:
+        description: Also replace the files that repositories keep as their own (replace false in the sync config)
+        type: boolean
+        default: false
 
 # Queue runs instead of cancelling them, so a sync is never left half-done across repositories.
 concurrency:
@@ -30,6 +35,14 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+
+      - name: Replace Kept Files Too
+        if: inputs.replace-kept-files
+        env:
+          CONFIG: .github/workflows/config/sync.yml
+        run: |
+          sed -i 's/replace: false/replace: true/' "$CONFIG"
+          if grep -q 'replace: false' "$CONFIG"; then exit 1; fi
 
       - name: Sync Shared Files
         uses: N6REJ/repo-file-sync-action@f815829feca285fc2800ce183fbd6f59db85ca33 # v2026.10.10+0

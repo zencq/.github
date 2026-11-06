@@ -1,6 +1,8 @@
 # Config of N6REJ/repo-file-sync-action, used by .github/workflows/sync.yml.
 # Every repository gets the dotnet layer and the repository setup files; NuGet libraries also get the library layer.
 # deleteOrphaned removes a synced file from the target once it is gone here.
+# replace: false creates a file once and leaves it to the repository afterwards; the workflow input
+# replace-kept-files replaces such files too for one manual run.
 
 group:
   - files:
@@ -11,8 +13,6 @@ group:
         dest: .editorconfig
       - source: .gitattributes
         dest: .gitattributes
-      - source: .qlty/qlty.toml
-        dest: .qlty/qlty.toml
       - source: .qlty/.gitignore
         dest: .qlty/.gitignore
       - source: .qlty/configs/.markdownlint.json
@@ -32,3 +32,20 @@ group:
       zencq/zenin-common
       zencq/zenin-integration-nms
       zencq/zenin-integration-nms-procedural
+
+  - files:
+      - source: .qlty/qlty.toml
+        dest: .qlty/qlty.toml
+    repos: |
+      zencq/zenin-common
+      zencq/zenin-integration-nms-procedural
+      zencq/nomnom
+      zencq/Articuno
+
+  # zenin-integration-nms adds exclude_patterns for the older versions of its data compiler.
+  - files:
+      - source: .qlty/qlty.toml
+        dest: .qlty/qlty.toml
+        replace: false
+    repos: |
+      zencq/zenin-integration-nms
