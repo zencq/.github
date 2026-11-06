@@ -7,6 +7,7 @@ applyTo: "**"
 # Formatting and linting
 
 - `.editorconfig`, `.gitattributes`, and the Qlty configuration (`.qlty/qlty.toml`, `.qlty/configs/`) are synced from `zencq/.github` as well: edit them there.
+- A repository that needs its own Qlty settings (such as `exclude_patterns`) keeps `.qlty/qlty.toml` as its own: the sync creates it once and replaces it only when started by hand with that option, so carry the repository's additions over then. Its own instructions say so.
 - The rules live in `.editorconfig`: LF line endings on every OS (enforced for commits by `.gitattributes`), 4-space indentation in `.cs` files, and 2 spaces in csproj/props/json/md files.
 - The spell-checker dictionary is `.exclusion.dic`; add the domain words it flags there.
 - Run `dotnet format` before committing (see `commands.instructions.md`); the build doesn't flag whitespace, so CI checks it with `dotnet format --verify-no-changes`. The naming rules are only suggestions that no check enforces, so follow them anyway.

@@ -24,6 +24,10 @@ On every push to `main` that changes these files, `.github/workflows/sync.yml` r
 
 The action writes to the other repositories with the `SYNC_TOKEN` secret: a fine-grained personal access token owned by `zencq`, limited to the repositories above, with read and write access to **Contents** and **Pull requests**.
 
+### Files a repository keeps as its own
+
+An entry with `replace: false` in `.github/workflows/config/sync.yml` creates the file once and then leaves it to the repository. `zencq/zenin-integration-nms` keeps `.qlty/qlty.toml` this way, because it adds `exclude_patterns` for the older versions of its data compiler. To roll out a changed shared file to these repositories too, start the workflow by hand with **Replace kept files** ticked, then carry each repository's additions over in its sync pull request.
+
 ## Changing a shared rule
 
 - Edit the files here, never the synced copies; the next sync overwrites them.
