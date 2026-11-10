@@ -1,5 +1,6 @@
 # Config of N6REJ/repo-file-sync-action, used by .github/workflows/sync.yml.
 # Every dotnet repository gets the dotnet layer and the repository setup files; NuGet libraries also get the library layer.
+# Repositories that deploy with Docker get the docker layer.
 # deleteOrphaned removes a synced file from the target once it is gone here.
 # replace: false creates a file once and leaves it to the repository afterwards; the workflow input replace-kept-files replaces such files too for one manual run.
 
@@ -30,6 +31,15 @@ group:
       zencq/zenin-common
       zencq/zenin-integration-nms
       zencq/zenin-integration-nms-procedural
+
+  - files:
+      - source: instructions/docker/
+        dest: .github/instructions/shared/docker/
+        deleteOrphaned: true
+      - source: .gitattributes
+        dest: .gitattributes
+    repos: |
+      zencq/docker
 
   - files:
       - source: .qlty/qlty.toml
