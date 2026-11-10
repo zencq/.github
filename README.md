@@ -6,6 +6,7 @@ The single source of the agent instructions and the repository setup files that 
 | --- | --- | --- |
 | `instructions/dotnet/` | Rules for every .NET repository: C# style, tests, workflows, commits, formatting and linting, target frameworks, project files, authoring instructions | `.github/instructions/shared/dotnet/` in every repository below |
 | `instructions/library/` | Rules only for NuGet libraries: public API tracking, trimming and AOT, packages, releases | `.github/instructions/shared/library/` in the libraries |
+| `instructions/docker/` | Rules for repositories that deploy with Docker: stack folders, the shared `proxy` network and the Cloudflare Tunnel, `.env` handling, images, health checks, Postgres upgrades | `.github/instructions/shared/docker/` in the repositories that deploy with Docker |
 | `.editorconfig` | Formatting and naming rules | the same path in every repository below |
 | `.gitattributes` | LF line endings | the same path in every repository below |
 | `.qlty/` | Qlty linters and their settings | the same paths in every repository below |
