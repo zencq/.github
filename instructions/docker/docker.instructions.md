@@ -11,7 +11,7 @@ applyTo: "**/compose.yaml,**/Dockerfile,**/.dockerignore,**/*.env.example"
 - Each stack has its own folder with `compose.yaml`, `.env.example`, and the untracked `.env`. Compose takes the project name from the folder, so commands run in that folder without `-f` or `-p`.
 - Container names come from Compose (`<project>-<service>-<number>`). Set `container_name` only when the name is used from outside, such as in `docker exec`.
 - Application data lives in bind mounts under `/opt/<stack>/`, owned by the user the image runs as, so it can be backed up and edited with normal tools on the host. Database engines such as Postgres keep a named volume.
-- Keep the files lean: leave out settings that repeat a default, and comments that repeat what a key already says.
+- Keep the files lean: leave out settings that repeat a default, and comments that repeat what a key already says. Check the default in the image's documentation before dropping a setting; a guessed default breaks the stack only when it starts.
 
 ## Network
 
