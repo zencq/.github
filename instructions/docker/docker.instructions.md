@@ -28,9 +28,10 @@ applyTo: "**/compose.yaml,**/Dockerfile,**/.dockerignore,**/*.env.example"
 
 ## Images and lifecycle
 
-- Pin application and database images to their major version (such as `postgres:18`), so an update never runs an unplanned major upgrade with migrations. Below 1.0 pin the minor version (`0.4`), because there the minor version is the breaking one. Tools without state may use `latest`.
-- Our own applications are built by the release workflow of their repository and pushed to `ghcr.io/zencq/<app>` with the tags `<major>.<minor>.<patch>`, `<major>.<minor>`, and (from 1.0) `<major>`. A stack runs them with `image:`, never with `build:`.
-- Update with `docker compose up --pull always --detach`.
+- Pin every third-party image to its exact version (`postgres:18.1`, `henrygd/beszel:0.21.2`), never to `latest` or a major-only tag. Dependabot (see `dependabot.instructions.md`) then opens a pull request for each release, so every update is reviewed with its release notes and recorded in the history, and the file says what runs. Images that must stay on the same version, such as a server and its agent, share a Dependabot group.
+- Before merging a major update (a minor one below 1.0, where the minor version is the breaking one), read its upgrade notes: it can bring migrations or, for a database, need a dump and a restore.
+- Our own applications are built by the release workflow of their repository and pushed to `ghcr.io/zencq/<app>` with the tags `<major>.<minor>.<patch>`, `<major>.<minor>`, (from 1.0) `<major>`, and `latest`. A stack runs them with `image:` and the tag `latest`, never with `build:`: their releases are our own, so we know when one needs more than a pull, and their packages are private, which Dependabot can't read anyway.
+- A merged update reaches the server only with `docker compose up --pull always --detach` in the stack's folder.
 - Every service has `restart: unless-stopped` and a `healthcheck`. Images without a shell (distroless) need the `CMD` form; `CMD-SHELL` fails there.
 - A `Dockerfile` builds in stages, runs as a non-root user, and declares a `HEALTHCHECK` against the application's health endpoint.
 
