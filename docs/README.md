@@ -6,7 +6,8 @@ The agent instructions and repository setup files that the zencq repositories sh
 
 | Folder | Contents |
 | --- | --- |
-| `instructions/common/` | Rules for every repository, whatever its language: commits and branches, scope of changes, Dependabot, repository names, Qlty, GitHub Actions workflows, authoring instructions |
+| `instructions/common/` | Rules for every repository, whatever its language: commits and branches, scope of changes, Dependabot, repository names, GitHub Actions workflows, authoring instructions |
+| `instructions/qlty/` | Rules for every repository with code, which gets the Qlty configuration: what Qlty checks and the commands to run it |
 | `instructions/dotnet/` | Rules for every .NET repository: C# style, tests, formatting and linting, target frameworks, project files |
 | `instructions/library/` | Rules for every library, whatever its language: packages, their readme and docs, public API compatibility, releases with release-please |
 | `instructions/dotnet-library/` | Rules only for NuGet libraries: package metadata, public API tracking, trimming and AOT, publishing to NuGet.org |

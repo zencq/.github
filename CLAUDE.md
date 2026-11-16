@@ -9,4 +9,4 @@ This repository is the source of the agent instructions and repository setup fil
 @instructions/common/dependabot.instructions.md
 @instructions/common/commits.instructions.md
 @instructions/common/names.instructions.md
-@instructions/common/qlty.instructions.md
+@instructions/qlty/qlty.instructions.md
