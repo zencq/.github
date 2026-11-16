@@ -2,7 +2,7 @@
 applyTo: "**/*.cs,**/*.csproj"
 ---
 
-<!-- Synced from zencq/.github (instructions/library/). Edit it there; changes made in a consuming repository are overwritten. -->
+<!-- Synced from zencq/.github (instructions/dotnet-library/). Edit it there; changes made in a consuming repository are overwritten. -->
 
 # Trimming, AOT, and the browser
 

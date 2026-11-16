@@ -2,16 +2,16 @@
 applyTo: ".github/instructions/**,.github/copilot-instructions.md,AGENTS.md,CLAUDE.md"
 ---
 
-<!-- Synced from zencq/.github (instructions/dotnet/). Edit it there; changes made in a consuming repository are overwritten. -->
+<!-- Synced from zencq/.github (instructions/common/). Edit it there; changes made in a consuming repository are overwritten. -->
 
 # Authoring instructions
 
 ## Shared and repository files
 
-- The rules every repository shares come from `zencq/.github`, which syncs them by pull request into `.github/instructions/shared/` (`dotnet/` for every .NET repository, `library/` for NuGet libraries). Never edit them in the repository they are synced to; change them in `zencq/.github` instead.
+- The rules every repository shares come from `zencq/.github`, which syncs them by pull request into `.github/instructions/shared/` (one folder per layer, such as `common/` for every repository and `dotnet/` for every .NET repository; `docs/README.md` in `zencq/.github` lists them). Never edit them in the repository they are synced to; change them in `zencq/.github` instead.
 - Shared files hold no repository-specific names: no types, files, paths, or solution names of any one repository. Examples use neutral, made-up names (such as `OrderTotal` or `MAX_RETRY_COUNT`).
 - The repository's own files live directly in `.github/instructions/`. They may add to a shared topic (for example the repository's current target frameworks, or an example from its own code), but never override or contradict a shared rule. If a shared rule doesn't fit a repository, change it in `zencq/.github`.
-- Every repository has a `commands.instructions.md` with its own commands to build, format, test, and pack; shared files refer to it by name.
+- Every repository has a `commands.instructions.md` with its own commands (such as build, format, test, and pack); shared files refer to it by name.
 
 ## Files
 

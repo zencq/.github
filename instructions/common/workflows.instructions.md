@@ -2,7 +2,7 @@
 applyTo: ".github/workflows/**"
 ---
 
-<!-- Synced from zencq/.github (instructions/dotnet/). Edit it there; changes made in a consuming repository are overwritten. -->
+<!-- Synced from zencq/.github (instructions/common/). Edit it there; changes made in a consuming repository are overwritten. -->
 
 # GitHub Actions workflows
 
