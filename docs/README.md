@@ -25,6 +25,7 @@ The agent instructions and repository setup files that the zencq repositories sh
 - Edit the files here, never the copies in other repositories.
 - Shared files hold no repository-specific names. A repository adds its own facts in its own `.github/instructions/` files, which may add to a shared topic but never contradict it. The full authoring rules are in `instructions/common/instructions.instructions.md`.
 - Shared setup files hold no repository-specific settings either. A repository whose layout doesn't fit them (such as tests outside `tests/`) changes its layout, not the shared file.
+- This repository is public, so its docs and community files name no target repository; only the sync config lists them.
 
 ## How the sync works
 
