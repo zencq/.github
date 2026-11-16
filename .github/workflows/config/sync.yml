@@ -1,33 +1,50 @@
 # Config of N6REJ/repo-file-sync-action, used by .github/workflows/sync.yml.
-# Every dotnet repository gets the dotnet layer and the repository setup files; NuGet libraries also get the library layer.
-# Repositories that deploy with Docker get the docker layer.
+# Every repository gets the common layer and .gitattributes. Every dotnet repository gets the dotnet layer and .editorconfig;
+# NuGet libraries also get the library and dotnet-library layers. Repositories that deploy with Docker get the docker layer.
+# Every repository with code (dotnet and typescript) gets the Qlty configuration.
 # deleteOrphaned removes a synced file from the target once it is gone here.
 # replace: false creates a file once and leaves it to the repository afterwards; the workflow input replace-kept-files replaces such files too for one manual run.
 
 group:
+  - files:
+      - source: instructions/common/
+        dest: .github/instructions/shared/common/
+        deleteOrphaned: true
+      - source: .gitattributes
+        dest: .gitattributes
+    repos: |
+      zencq/convergence
+      zencq/docker
+      zencq/nomnom
+      zencq/relay
+      zencq/zenin-common
+      zencq/zenin-integration-nms
+      zencq/zenin-integration-nms-procedural
+      zencq/articuno
+
   - files:
       - source: instructions/dotnet/
         dest: .github/instructions/shared/dotnet/
         deleteOrphaned: true
       - source: .editorconfig
         dest: .editorconfig
-      - source: .gitattributes
-        dest: .gitattributes
-      - source: .qlty/
-        dest: .qlty/
-        exclude: qlty.toml
     repos: |
+      zencq/convergence
       zencq/nomnom
       zencq/zenin-common
       zencq/zenin-integration-nms
       zencq/zenin-integration-nms-procedural
-      zencq/Articuno
+      zencq/articuno
 
   - files:
       - source: instructions/library/
         dest: .github/instructions/shared/library/
         deleteOrphaned: true
+      - source: instructions/dotnet-library/
+        dest: .github/instructions/shared/dotnet-library/
+        deleteOrphaned: true
     repos: |
+      zencq/convergence
       zencq/zenin-common
       zencq/zenin-integration-nms
       zencq/zenin-integration-nms-procedural
@@ -36,19 +53,32 @@ group:
       - source: instructions/docker/
         dest: .github/instructions/shared/docker/
         deleteOrphaned: true
-      - source: .gitattributes
-        dest: .gitattributes
     repos: |
       zencq/docker
+
+  - files:
+      - source: .qlty/
+        dest: .qlty/
+        exclude: qlty.toml
+    repos: |
+      zencq/convergence
+      zencq/nomnom
+      zencq/zenin-common
+      zencq/zenin-integration-nms
+      zencq/zenin-integration-nms-procedural
+      zencq/articuno
+      zencq/relay
 
   - files:
       - source: .qlty/qlty.toml
         dest: .qlty/qlty.toml
     repos: |
+      zencq/convergence
       zencq/nomnom
       zencq/zenin-common
       zencq/zenin-integration-nms-procedural
-      zencq/Articuno
+      zencq/articuno
+      zencq/relay
 
   # zenin-integration-nms adds exclude_patterns
   - files:
