@@ -1,45 +1,10 @@
 # zencq/.github
 
-The single source of the agent instructions and the repository setup files that the zencq .NET repositories share, and the default community files of every zencq repository.
-
-| Folder | Contents | Synced to |
-| --- | --- | --- |
-| `instructions/dotnet/` | Rules for every .NET repository: C# style, tests, workflows, commits, formatting and linting, target frameworks, project files, authoring instructions | `.github/instructions/shared/dotnet/` in every repository below |
-| `instructions/library/` | Rules only for NuGet libraries: public API tracking, trimming and AOT, packages, releases | `.github/instructions/shared/library/` in the libraries |
-| `instructions/docker/` | Rules for repositories that deploy with Docker: stack folders, the shared `proxy` network and the Cloudflare Tunnel, `.env` handling, images, health checks, Postgres upgrades | `.github/instructions/shared/docker/` in the repositories that deploy with Docker |
-| `.editorconfig` | Formatting and naming rules | the same path in every repository below |
-| `.gitattributes` | LF line endings | the same path in every repository below |
-| `.qlty/` | Qlty linters and their settings | the same paths in every repository below |
-
-| Repository | Layers |
-| --- | --- |
-| `zencq/zenin-common` | dotnet, library |
-| `zencq/zenin-integration-nms` | dotnet, library |
-| `zencq/zenin-integration-nms-procedural` | dotnet, library |
-| `zencq/nomnom` | dotnet |
-| `zencq/Articuno` | dotnet |
-| `zencq/docker` | docker (and `.gitattributes`) |
-
-## How the sync works
-
-On every push to `main` that changes these files, `.github/workflows/sync.yml` runs [repo-file-sync-action](https://github.com/N6REJ/repo-file-sync-action) with the mapping in `.github/workflows/config/sync.yml`, and opens (or updates) one pull request in each repository whose copy differs. Files removed here are removed there too. The workflow can also be started by hand.
-
-The action writes to the other repositories with the `SYNC_TOKEN` secret: a fine-grained personal access token owned by `zencq`, limited to the repositories above, with read and write access to **Contents** and **Pull requests**.
-
-### Files a repository keeps as its own
-
-An entry with `replace: false` in `.github/workflows/config/sync.yml` creates the file once and then leaves it to the repository. `zencq/zenin-integration-nms` keeps `.qlty/qlty.toml` this way, because it adds `exclude_patterns` for the older versions of its data compiler. To roll out a changed shared file to these repositories too, start the workflow by hand with **Replace kept files** ticked, then carry each repository's additions over in its sync pull request.
-
-## Changing a shared rule
-
-- Edit the files here, never the synced copies; the next sync overwrites them.
-- Shared files hold no repository-specific names. A repository adds its own facts in its own `.github/instructions/` files, which may add to a shared topic but never contradict it. The full authoring rules are in `instructions/dotnet/instructions.instructions.md`.
-- Shared setup files hold no repository-specific settings either. A repository whose layout doesn't fit them (such as tests outside `tests/`) changes its layout, not the shared file.
-- To add a repository, add it to `.github/workflows/config/sync.yml` and to the table above.
+The default community files of every zencq repository, and the source of the agent instructions and repository setup files that the zencq repositories share (see [the docs](docs/README.md)).
 
 ## Community defaults
 
-The files in `.github/` (besides the workflows and Dependabot) are the default community files: GitHub uses them for every public zencq repository that has no file of the same kind, so they are not synced. They hold nothing specific to one repository: they link only to the shared Discord and to each other by absolute URL (`https://github.com/zencq/.github/blob/HEAD/.github/...`), because relative links would resolve inside the repository that shows them.
+The files in `.github/` (besides the workflows and Dependabot) are the default community files: GitHub uses them for every public zencq repository that has no file of the same kind. They hold nothing specific to one repository: they link only to the shared Discord and to each other by absolute URL (`https://github.com/zencq/.github/blob/HEAD/.github/...`), because relative links would resolve inside the repository that shows them.
 
 | File | Purpose |
 | --- | --- |
@@ -53,5 +18,4 @@ The files in `.github/` (besides the workflows and Dependabot) are the default c
 | `.github/ISSUE_TEMPLATE/` | Bug report and feature request forms, and a contact link to Discord |
 | `.github/DISCUSSION_TEMPLATE/` | Forms for the General, Ideas, and Q&A discussion categories |
 
-- A repository's own `.github/ISSUE_TEMPLATE/` or `.github/DISCUSSION_TEMPLATE/` folder replaces the whole default folder.
-- A repository keeps its own version of a file only when it needs to say something specific to it. `CODEOWNERS` can't be a default and stays in each repository.
+A repository's own `.github/ISSUE_TEMPLATE/` or `.github/DISCUSSION_TEMPLATE/` folder replaces the whole default folder. A repository keeps its own version of a file only when it needs to say something specific to it. `CODEOWNERS` can't be a default and stays in each repository.
