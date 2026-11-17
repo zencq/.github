@@ -6,7 +6,7 @@ applyTo: "**"
 
 # Packages
 
-- Each package has its own `README.md`, `CHANGELOG.md`, and `LICENSE` next to its project file, and its own tests.
+- Each package has its own `README.md`, `CHANGELOG.md`, and `LICENSE` (see `license.instructions.md`) next to its project file, and its own tests.
 - Keep package names and namespaces aligned with the repository's package naming pattern. Add new functionality to the most specific existing package; add a new package only when it does not fit an existing one.
 - Packages depend on each other in one direction only; there must be no circular references.
 - The package `README.md` is also the readme on the package registry. It introduces the package, lists its namespaces with their main types and its external dependencies, and links to `docs/` for usage. Update it when a namespace or main type is added, removed, or renamed, or when a dependency changes.

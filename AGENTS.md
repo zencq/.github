@@ -2,12 +2,13 @@
 
 This repository is the source of the agent instructions and repository setup files that the zencq repositories share; `docs/README.md` explains the layers, the sync, and the scripts. The files in `instructions/` are not instructions for this repository: they are synced into the others. The common ones below still apply here, and this repository's own instructions live in `.github/instructions/`.
 
-Always read the files that apply to everything: [commands.instructions.md](.github/instructions/commands.instructions.md), [changes.instructions.md](instructions/common/changes.instructions.md), [commits.instructions.md](instructions/common/commits.instructions.md), [dependabot.instructions.md](instructions/common/dependabot.instructions.md), [names.instructions.md](instructions/common/names.instructions.md), and [qlty.instructions.md](instructions/qlty/qlty.instructions.md). Read the others when you work on the files they apply to:
+Always read the files that apply to everything: [commands.instructions.md](.github/instructions/commands.instructions.md), [changes.instructions.md](instructions/common/changes.instructions.md), [license.instructions.md](instructions/common/license.instructions.md), [commits.instructions.md](instructions/common/commits.instructions.md), [dependabot.instructions.md](instructions/common/dependabot.instructions.md), [names.instructions.md](instructions/common/names.instructions.md), and [qlty.instructions.md](instructions/qlty/qlty.instructions.md). Read the others when you work on the files they apply to:
 
 | File | Applies to |
 | --- | --- |
 | [commands.instructions.md](.github/instructions/commands.instructions.md) | everything (Qlty, the editorconfig script, starting the sync by hand) |
 | [common/changes.instructions.md](instructions/common/changes.instructions.md) | everything (scope of changes) |
+| [common/license.instructions.md](instructions/common/license.instructions.md) | everything (a `LICENSE` in every repository, dependency licenses) |
 | [common/commits.instructions.md](instructions/common/commits.instructions.md) | everything (Conventional Commits, branch names) |
 | [common/dependabot.instructions.md](instructions/common/dependabot.instructions.md) | everything (Dependabot entries, groups, commit prefixes) |
 | [common/names.instructions.md](instructions/common/names.instructions.md) | everything (repository names in lowercase) |

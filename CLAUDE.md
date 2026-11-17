@@ -5,6 +5,7 @@ This repository is the source of the agent instructions and repository setup fil
 @.github/instructions/commands.instructions.md
 @instructions/common/instructions.instructions.md
 @instructions/common/changes.instructions.md
+@instructions/common/license.instructions.md
 @instructions/common/workflows.instructions.md
 @instructions/common/dependabot.instructions.md
 @instructions/common/commits.instructions.md
