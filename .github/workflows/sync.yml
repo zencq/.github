@@ -9,7 +9,9 @@ on:
       - ".gitattributes"
       - ".github/workflows/**"
       - ".qlty/**"
+      - "docs/README.md"
       - "instructions/**"
+      - "scripts/update-indexes.sh"
   workflow_dispatch:
     inputs:
       replace-kept-files:
@@ -23,8 +25,34 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  # The layer indexes are generated, so a sync never ships one that misses a file or names a stale applyTo.
+  indexes:
+    name: Check Layer Indexes
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Regenerate Indexes
+        run: scripts/update-indexes.sh
+
+      - name: Compare With Committed Indexes
+        run: |
+          if [ -n "$(git status --porcelain -- instructions)" ]; then
+            git status --short -- instructions
+            git diff -- instructions
+            echo "::error::The layer indexes are out of date. Run scripts/update-indexes.sh and commit the result."
+            exit 1
+          fi
+
   sync:
     name: Sync
+    needs: indexes
     runs-on: ubuntu-latest
     timeout-minutes: 10
     # The cross-repository writes use the SYNC_TOKEN secret, not GITHUB_TOKEN, which only reaches this repository.
@@ -56,4 +84,4 @@ jobs:
           PR_LABELS: false
           PR_BODY: |
             Shared agent instructions and repository setup files (`.editorconfig`, `.gitattributes`, `.qlty/`) from [zencq/.github](https://github.com/zencq/.github).
-            Don't edit these files here; change them in `zencq/.github`. If a new shared file appeared or one was removed, update `CLAUDE.md` and `AGENTS.md` in this pull request.
+            Don't edit these files here; change them in `zencq/.github`. Each layer's `README.md` lists its files, so a shared file added or removed needs no change here; only a layer added or removed needs one in the layer list of `AGENTS.md`.
