@@ -13,5 +13,6 @@ Always read the files that apply to everything: [commands.instructions.md](.gith
 | [common/dependabot.instructions.md](instructions/common/dependabot.instructions.md) | everything (Dependabot entries, groups, commit prefixes) |
 | [common/names.instructions.md](instructions/common/names.instructions.md) | everything (repository names in lowercase) |
 | [qlty/qlty.instructions.md](instructions/qlty/qlty.instructions.md) | everything (Qlty configuration and commands) |
+| [common/readme.instructions.md](instructions/common/readme.instructions.md) | `README.md` (the AI assistance section) |
 | [common/workflows.instructions.md](instructions/common/workflows.instructions.md) | `.github/workflows/**` (permissions, action pinning, timeouts, concurrency) |
 | [common/instructions.instructions.md](instructions/common/instructions.instructions.md) | `instructions/**`, `.github/instructions/**`, `AGENTS.md`, `CLAUDE.md` (authoring the shared and repository instructions) |

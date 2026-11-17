@@ -2,7 +2,7 @@
 
 # Layer `common`
 
-Rules for every repository, whatever its language: commits and branches, scope of changes, license, Dependabot, repository names, GitHub Actions workflows, authoring instructions.
+Rules for every repository, whatever its language: commits and branches, scope of changes, license, README sections, Dependabot, repository names, GitHub Actions workflows, authoring instructions.
 
 Read the files that apply to everything before any task, and the others when you work on the paths they apply to.
 
@@ -14,4 +14,5 @@ Read the files that apply to everything before any task, and the others when you
 | @instructions.instructions.md | `.github/instructions/**`, `.github/copilot-instructions.md`, `AGENTS.md`, `CLAUDE.md` | Authoring instructions: Shared and repository files, Files, Content, Maintenance, Entry points |
 | @license.instructions.md | everything | License |
 | @names.instructions.md | everything | Repository names |
+| @readme.instructions.md | `README.md` | README |
 | @workflows.instructions.md | `.github/workflows/**` | GitHub Actions workflows |
