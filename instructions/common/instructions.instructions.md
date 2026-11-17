@@ -39,5 +39,7 @@ applyTo: ".github/instructions/**,.github/copilot-instructions.md,AGENTS.md,CLAU
 ## Entry points
 
 - `CLAUDE.md`, `AGENTS.md`, and `.github/copilot-instructions.md` hold no rules; they only point to `.github/instructions/`.
-- When an instruction file is added, renamed, or removed (shared or not), update `CLAUDE.md` (its `@` import) and `AGENTS.md` (its table row, and the "always read" list for `applyTo: "**"` files). Copilot finds the files on its own, subfolders included.
-- Agents load the files differently: Claude Code imports all of them, Copilot loads the ones whose `applyTo` matches, and other agents read `AGENTS.md` and follow its links. Each file must therefore make sense on its own.
+- Each layer in `.github/instructions/shared/` has a `README.md` index that lists its files with what they apply to, each as an `@` import. It is generated in `zencq/.github` and synced with the layer, so a shared file added, renamed, or removed needs no change in the repositories.
+- `AGENTS.md` lists each layer the repository gets by the `@` path of its index (`@.github/instructions/shared/common/README.md`), then the repository's own files in a table, each as an `@` path with what it applies to. When one of the repository's own files is added, renamed, or removed, or a layer comes or goes, update that list.
+- `CLAUDE.md` holds only `@AGENTS.md`: Claude Code follows the imports through `AGENTS.md` and the indexes to every file. Tools that add their own blocks to `AGENTS.md` (between `<!-- name:start -->` and `<!-- name:end -->` markers) keep them below the hand-written part; don't edit those blocks.
+- Agents load the files differently: Claude Code imports all of them, Copilot loads the ones whose `applyTo` matches, and other agents read `AGENTS.md` and follow its paths. Each file must therefore make sense on its own.

@@ -38,6 +38,12 @@ On every push to `main` that changes the shared files, `.github/workflows/sync.y
 
 ## Scripts
 
+`scripts/update-indexes.sh` regenerates `instructions/<layer>/README.md`, the index of each layer, from the `applyTo` and headings of its files and the layer's row in the table above. Run it after adding, renaming, or removing a file in a layer, or changing its `applyTo` or headings, and commit the indexes with the change:
+
+```sh
+scripts/update-indexes.sh
+```
+
 `scripts/update-editorconfig.sh` regenerates the Modern C# template part of `.editorconfig` and keeps everything from the `#### zencq additions ####` marker on. It needs the .NET SDK:
 
 ```sh
