@@ -1,0 +1,11 @@
+# What agentic.check recommends but no zencq repository uses. `agentic.check --yes` installs every recommendation and
+# doesn't remember what was deselected before, so ../agentic-check.yml removes these afterwards with
+# ../scripts/agentic-check-skip.sh. A repository skips more in its own .github/agentic-skip.txt, in the same format.
+#
+# directive:<name>  a directive block in AGENTS.md or CLAUDE.md (<!-- name:start --> ... <!-- name:end -->)
+# skill:<name>      a skill folder in every skills directory (.agents/skills/<name>, .claude/skills/<name>, ...)
+# badge             the "built with: dna" badge in README.md
+
+directive:foundation-prompt-log
+
+badge

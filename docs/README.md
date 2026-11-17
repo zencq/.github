@@ -36,6 +36,35 @@ On every push to `main` that changes the shared files, `.github/workflows/sync-s
 - An entry with `replace: false` creates the file once and then leaves it to the repository, for a repository that keeps its own `.qlty/qlty.toml`. To roll out a changed file to these repositories too, start the workflow by hand with **Replace kept files** ticked, then carry each repository's additions over in its sync pull request.
 - To add a repository, add it to the groups of its layers in `.github/workflows/config/sync-shared-resources.yml` and give `SYNC_TOKEN` access to it.
 
+## agentic.check
+
+[agentic.check](https://github.com/VincentH-Net/dotnet-agentic-engineering) installs agent directives (blocks in `AGENTS.md`), skills (`.agents/skills/`, `.claude/skills/`), and its tool pin (`.config/dotnet-tools.json`) in each .NET repository. The reusable workflow `.github/workflows/agentic-check.yml` keeps them current: it runs `agentic.check --yes`, removes what the skip lists name with `.github/workflows/scripts/agentic-check-skip.sh`, and opens or updates one pull request on the branch `chore/agentic-check`.
+
+- `--yes` installs every recommendation and doesn't remember what was deselected, so anything left out goes into a skip list: `.github/workflows/config/agentic-check-skip.txt` here for what no repository uses, and `.github/agentic-skip.txt` in a repository for what only it leaves out. The shared list describes the format.
+- A repository calls the workflow from its own `.github/workflows/agentic-check.yml`, pinned to a commit of this repository like any action:
+
+  ```yaml
+  name: agentic.check
+
+  on:
+    schedule:
+      - cron: "0 5 * * 1"
+    workflow_dispatch:
+
+  concurrency:
+    group: agentic-check
+    cancel-in-progress: false
+
+  jobs:
+    check:
+      permissions:
+        contents: write
+        pull-requests: write
+      uses: zencq/.github/.github/workflows/agentic-check.yml@<commit-sha> # main
+  ```
+
+- The repository must allow GitHub Actions to create pull requests (Settings → Actions → General). Pull requests opened with `GITHUB_TOKEN` don't start CI; pass a token as the `token` secret for that.
+
 ## Scripts
 
 `.github/workflows/scripts/update-indexes.sh` regenerates `instructions/<layer>/README.md`, the index of each layer, from the `applyTo` and headings of its files and the layer's row in the table above. Run it after adding, renaming, or removing a file in a layer, or changing its `applyTo` or headings, and commit the indexes with the change:

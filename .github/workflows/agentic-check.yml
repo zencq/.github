@@ -1,0 +1,93 @@
+name: agentic.check
+
+# Reusable: a repository calls it on a schedule (see docs/README.md). It runs agentic.check with --yes, which installs
+# every recommendation, removes what the skip lists name (config/agentic-check-skip.txt here and
+# .github/agentic-skip.txt in the repository), and opens or updates one pull request on the branch chore/agentic-check
+# when anything changed.
+on:
+  workflow_call:
+    inputs:
+      agents:
+        description: The agents to install directives and skills for (agentic.check --agents)
+        type: string
+        default: github-copilot,claude-code
+    secrets:
+      token:
+        description: >-
+          Token that pushes the branch and opens the pull request. Without it GITHUB_TOKEN is used, whose pull requests
+          don't start other workflows such as CI.
+        required: false
+
+jobs:
+  check:
+    name: agentic.check
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+      pull-requests: write
+    # Queued, never cancelled, so a run never leaves the branch pushed without its pull request.
+    concurrency:
+      group: agentic-check-${{ github.repository }}
+      cancel-in-progress: false
+    env:
+      BRANCH: chore/agentic-check
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          path: repository
+          persist-credentials: false
+
+      # The shared skip list and the script live next to this workflow; their own folder keeps them out of the PR.
+      - name: Checkout Shared Files
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: zencq/.github
+          path: shared
+          persist-credentials: false
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@0f4a354dd5547a28c70b7853dbd95d5b67886e73 # v6.1.0
+        with:
+          dotnet-version: latest
+
+      # gh skill downloads the skills from GitHub and needs a token for it.
+      - name: Run agentic.check
+        working-directory: repository
+        env:
+          AGENTS: ${{ inputs.agents }}
+          GH_TOKEN: ${{ github.token }}
+        run: dotnet dnx agentic.check -- --yes --agents "$AGENTS" < /dev/null
+
+      - name: Remove Skipped Items
+        working-directory: repository
+        run: bash ../shared/.github/workflows/scripts/agentic-check-skip.sh ../shared/.github/workflows/config/agentic-check-skip.txt .github/agentic-skip.txt
+
+      - name: Open Pull Request
+        working-directory: repository
+        env:
+          GH_TOKEN: ${{ secrets.token || github.token }}
+          BASE: ${{ github.event.repository.default_branch }}
+        run: |
+          open_pr="$(gh pr list --head "$BRANCH" --state open --json number --jq '.[0].number')"
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "Nothing changed."
+            if [ -n "$open_pr" ]; then
+              gh pr close "$open_pr" --delete-branch --comment "The default branch already has the current agentic.check directives and skills."
+            fi
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch --create "$BRANCH"
+          git add --all
+          git commit --quiet --message "chore: update the agentic.check directives and skills"
+          git push --force --quiet "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "HEAD:refs/heads/$BRANCH"
+
+          if [ -z "$open_pr" ]; then
+            gh pr create --base "$BASE" --head "$BRANCH" \
+              --title "chore: update the agentic.check directives and skills" \
+              --body "Applies the recommendations of [agentic.check](https://github.com/VincentH-Net/dotnet-agentic-engineering), except what \`.github/workflows/config/agentic-check-skip.txt\` in [zencq/.github](https://github.com/zencq/.github) and \`.github/agentic-skip.txt\` here skip. Don't edit the directive blocks or skills here; to leave one out, add it to a skip list."
+          fi
