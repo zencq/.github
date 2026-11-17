@@ -10,7 +10,7 @@ The agent instructions and repository setup files that the zencq repositories sh
 | `instructions/qlty/` | Rules for every repository with code, which gets the Qlty configuration: what Qlty checks and the commands to run it |
 | `instructions/dotnet/` | Rules for every .NET repository: C# style, tests, formatting and linting, target frameworks, project files |
 | `instructions/library/` | Rules for every library, whatever its language: packages, their readme and docs, public API compatibility, releases with release-please |
-| `instructions/dotnet-library/` | Rules only for NuGet libraries: package metadata, public API tracking, trimming and AOT, publishing to NuGet.org |
+| `instructions/dotnet-library/` | Rules only for NuGet libraries: package metadata, public API tracking, trimming and AOT, publishing to GitHub Packages and NuGet.org |
 | `instructions/docker/` | Rules for repositories that deploy with Docker: stack folders, the shared `proxy` network and the Cloudflare Tunnel, `.env` handling, images, health checks, Postgres upgrades |
 
 ## Setup files
