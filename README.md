@@ -6,6 +6,8 @@ The default community files of every zencq repository, and the source of the age
 
 The files in `.github/` (besides the workflows and Dependabot) are the default community files: GitHub uses them for every public zencq repository that has no file of the same kind. They hold nothing specific to one repository: they link only to the shared Discord and to each other by absolute URL (`https://github.com/zencq/.github/blob/HEAD/.github/...`), because relative links would resolve inside the repository that shows them.
 
+A repository's own `.github/ISSUE_TEMPLATE/` or `.github/DISCUSSION_TEMPLATE/` folder replaces the whole default folder. A repository keeps its own version of a file only when it needs to say something specific to it. `CODEOWNERS` can't be a default and stays in each repository.
+
 | File | Purpose |
 | --- | --- |
 | `.github/CODE_OF_CONDUCT.md` | Contributor Covenant, with reports going to the Discord moderators |
@@ -17,8 +19,6 @@ The files in `.github/` (besides the workflows and Dependabot) are the default c
 | `.github/pull_request_template.md` | The pull request description |
 | `.github/ISSUE_TEMPLATE/` | Bug report and feature request forms, and a contact link to Discord |
 | `.github/DISCUSSION_TEMPLATE/` | Forms for the General, Ideas, and Q&A discussion categories |
-
-A repository's own `.github/ISSUE_TEMPLATE/` or `.github/DISCUSSION_TEMPLATE/` folder replaces the whole default folder. A repository keeps its own version of a file only when it needs to say something specific to it. `CODEOWNERS` can't be a default and stays in each repository.
 
 ## AI assistance
 
