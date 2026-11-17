@@ -534,6 +534,9 @@ dotnet_naming_rule.public_constant_fields_should_be_pascalcase.style = upper_sna
 dotnet_naming_rule.private_constant_fields_should_be_pascalcase.style = upper_snake_case
 dotnet_naming_rule.public_static_readonly_fields_should_be_pascalcase.style = upper_snake_case
 dotnet_naming_rule.private_static_readonly_fields_should_be_pascalcase.style = upper_snake_case
+# CA1707 forbids underscores in public names, which these constants have, and so do test names
+# (Method_Scenario_Expectation). The naming rules above check the casing instead.
+dotnet_diagnostic.CA1707.severity = none
 
 # PublicApiAnalyzers: several overloads with an optional CancellationToken is the usual .NET pattern.
 dotnet_diagnostic.RS0026.severity = none
@@ -545,9 +548,6 @@ dotnet_code_quality.CA2007.output_kind = DynamicallyLinkedLibrary
 
 # Test projects
 [tests/**.cs]
-
-# Test names follow Method_Scenario_Expectation.
-dotnet_diagnostic.CA1707.severity = none
 
 # Test code needs no XML documentation; a hint instead of a build error.
 dotnet_diagnostic.CS1591.severity = suggestion
