@@ -1,4 +1,4 @@
-name: Sync shared files
+name: Sync Shared Resources
 
 on:
   push:
@@ -7,11 +7,12 @@ on:
     paths:
       - ".editorconfig"
       - ".gitattributes"
-      - ".github/workflows/**"
+      - ".github/workflows/config/sync-shared-resources.yml"
+      - ".github/workflows/scripts/update-indexes.sh"
+      - ".github/workflows/sync-shared-resources.yml"
       - ".qlty/**"
       - "docs/README.md"
       - "instructions/**"
-      - "scripts/update-indexes.sh"
   workflow_dispatch:
     inputs:
       replace-kept-files:
@@ -39,14 +40,14 @@ jobs:
           persist-credentials: false
 
       - name: Regenerate Indexes
-        run: scripts/update-indexes.sh
+        run: .github/workflows/scripts/update-indexes.sh
 
       - name: Compare With Committed Indexes
         run: |
           if [ -n "$(git status --porcelain -- instructions)" ]; then
             git status --short -- instructions
             git diff -- instructions
-            echo "::error::The layer indexes are out of date. Run scripts/update-indexes.sh and commit the result."
+            echo "::error::The layer indexes are out of date. Run .github/workflows/scripts/update-indexes.sh and commit the result."
             exit 1
           fi
 
@@ -67,20 +68,20 @@ jobs:
       - name: Replace Kept Files Too
         if: inputs.replace-kept-files
         env:
-          CONFIG: .github/workflows/config/sync.yml
+          CONFIG: .github/workflows/config/sync-shared-resources.yml
         run: |
           sed -i 's/replace: false/replace: true/' "$CONFIG"
           if grep -q 'replace: false' "$CONFIG"; then exit 1; fi
 
-      - name: Sync Shared Files
+      - name: Sync Shared Resources
         uses: N6REJ/repo-file-sync-action@f815829feca285fc2800ce183fbd6f59db85ca33 # v2026.10.10+0
         with:
           GH_PAT: ${{ secrets.SYNC_TOKEN }}
           IS_FINE_GRAINED: true
-          CONFIG_PATH: .github/workflows/config/sync.yml
+          CONFIG_PATH: .github/workflows/config/sync-shared-resources.yml
           COMMIT_PREFIX: "chore:"
           COMMIT_EACH_FILE: false
-          BRANCH_PREFIX: sync/shared-instructions
+          BRANCH_PREFIX: sync/shared-resources
           PR_LABELS: false
           PR_BODY: |
             Shared agent instructions and repository setup files (`.editorconfig`, `.gitattributes`, `.qlty/`) from [zencq/.github](https://github.com/zencq/.github).

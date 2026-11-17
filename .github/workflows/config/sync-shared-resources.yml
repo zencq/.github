@@ -1,4 +1,4 @@
-# Config of N6REJ/repo-file-sync-action, used by .github/workflows/sync.yml.
+# Config of N6REJ/repo-file-sync-action, used by .github/workflows/sync-shared-resources.yml.
 # Every repository gets the common layer and .gitattributes. Every dotnet repository gets the dotnet layer and .editorconfig;
 # NuGet libraries also get the library and dotnet-library layers. Repositories that deploy with Docker get the docker layer.
 # Every repository with code (dotnet and typescript) gets the qlty layer and the Qlty configuration.

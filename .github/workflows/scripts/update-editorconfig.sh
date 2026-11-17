@@ -6,7 +6,7 @@ set -eu
 
 MARKER='#### zencq additions ####'
 
-cd "$(dirname "$0")/.."
+cd "$(dirname "$0")/../../.."
 work=$(mktemp -d)
 trap 'rm -rf "$work"' EXIT
 

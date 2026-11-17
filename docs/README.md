@@ -1,8 +1,8 @@
-# Shared layers
+# Shared resources
 
 The agent instructions and repository setup files that the zencq repositories share. Each repository gets the layers that fit it.
 
-## Instructions
+## Agent instructions
 
 | Folder | Contents |
 | --- | --- |
@@ -30,22 +30,22 @@ The agent instructions and repository setup files that the zencq repositories sh
 
 ## How the sync works
 
-On every push to `main` that changes the shared files, `.github/workflows/sync.yml` runs [repo-file-sync-action](https://github.com/N6REJ/repo-file-sync-action). It reads `.github/workflows/config/sync.yml`, which maps each layer and setup file to the repositories that get it, and opens (or updates) one pull request in each repository whose copy differs. Files removed here are removed there too. The workflow can also be started by hand.
+On every push to `main` that changes the shared files, `.github/workflows/sync-shared-resources.yml` runs [repo-file-sync-action](https://github.com/N6REJ/repo-file-sync-action). It reads `.github/workflows/config/sync-shared-resources.yml`, which maps each layer and setup file to the repositories that get it, and opens (or updates) one pull request in each repository whose copy differs. Files removed here are removed there too. The workflow can also be started by hand.
 
 - The action writes to the other repositories with the `SYNC_TOKEN` secret: a fine-grained personal access token limited to the target repositories, with read and write access to **Contents** and **Pull requests**.
 - An entry with `replace: false` creates the file once and then leaves it to the repository, for a repository that keeps its own `.qlty/qlty.toml`. To roll out a changed file to these repositories too, start the workflow by hand with **Replace kept files** ticked, then carry each repository's additions over in its sync pull request.
-- To add a repository, add it to the groups of its layers in `.github/workflows/config/sync.yml` and give `SYNC_TOKEN` access to it.
+- To add a repository, add it to the groups of its layers in `.github/workflows/config/sync-shared-resources.yml` and give `SYNC_TOKEN` access to it.
 
 ## Scripts
 
-`scripts/update-indexes.sh` regenerates `instructions/<layer>/README.md`, the index of each layer, from the `applyTo` and headings of its files and the layer's row in the table above. Run it after adding, renaming, or removing a file in a layer, or changing its `applyTo` or headings, and commit the indexes with the change:
+`.github/workflows/scripts/update-indexes.sh` regenerates `instructions/<layer>/README.md`, the index of each layer, from the `applyTo` and headings of its files and the layer's row in the table above. Run it after adding, renaming, or removing a file in a layer, or changing its `applyTo` or headings, and commit the indexes with the change:
 
 ```sh
-scripts/update-indexes.sh
+.github/workflows/scripts/update-indexes.sh
 ```
 
-`scripts/update-editorconfig.sh` regenerates the Modern C# template part of `.editorconfig` and keeps everything from the `#### zencq additions ####` marker on. It needs the .NET SDK:
+`.github/workflows/scripts/update-editorconfig.sh` regenerates the Modern C# template part of `.editorconfig` and keeps everything from the `#### zencq additions ####` marker on. It needs the .NET SDK:
 
 ```sh
-scripts/update-editorconfig.sh
+.github/workflows/scripts/update-editorconfig.sh
 ```

@@ -8,12 +8,12 @@ applyTo: "**"
 - Regenerate the Modern C# template part of `.editorconfig` when the template has a new version. The script keeps everything from the `#### zencq additions ####` marker on and needs the .NET SDK:
 
   ```sh
-  scripts/update-editorconfig.sh
+  .github/workflows/scripts/update-editorconfig.sh
   ```
 
 - Start the sync by hand, or with the files that repositories keep as their own replaced too:
 
   ```sh
-  gh workflow run sync.yml
-  gh workflow run sync.yml -f replace-kept-files=true
+  gh workflow run sync-shared-resources.yml
+  gh workflow run sync-shared-resources.yml -f replace-kept-files=true
   ```
