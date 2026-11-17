@@ -8,7 +8,7 @@ Always read the files that apply to everything: [commands.instructions.md](.gith
 | --- | --- |
 | [commands.instructions.md](.github/instructions/commands.instructions.md) | everything (Qlty, the editorconfig script, starting the sync by hand) |
 | [common/changes.instructions.md](instructions/common/changes.instructions.md) | everything (scope of changes) |
-| [common/license.instructions.md](instructions/common/license.instructions.md) | everything (a `LICENSE` in every repository, dependency licenses) |
+| [common/license.instructions.md](instructions/common/license.instructions.md) | everything (a `LICENSE` in every repository, the README's License section, dependency licenses) |
 | [common/commits.instructions.md](instructions/common/commits.instructions.md) | everything (Conventional Commits, branch names) |
 | [common/dependabot.instructions.md](instructions/common/dependabot.instructions.md) | everything (Dependabot entries, groups, commit prefixes) |
 | [common/names.instructions.md](instructions/common/names.instructions.md) | everything (repository names in lowercase) |
