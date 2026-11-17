@@ -1,6 +1,6 @@
 # AGENTS.md
 
-This repository is the source of the agent instructions and repository setup files that the zencq repositories share; `docs/README.md` explains the layers, the sync, and the scripts. The files in `instructions/` are not instructions for this repository: they are synced into the others. The common ones below still apply here, and this repository's own instructions live in `.github/instructions/`.
+This repository is the source of the agent instructions and repository setup files that the zencq repositories share; `docs/README.md` explains the layers, the sync, and the scripts. The files in `instructions/` are not instructions for this repository: they are synced into the others. The ones listed below still apply here, and this repository's own instructions live in `.github/instructions/`.
 
 Always read the files that apply to everything: [commands.instructions.md](.github/instructions/commands.instructions.md), [changes.instructions.md](instructions/common/changes.instructions.md), [license.instructions.md](instructions/common/license.instructions.md), [commits.instructions.md](instructions/common/commits.instructions.md), [dependabot.instructions.md](instructions/common/dependabot.instructions.md), [names.instructions.md](instructions/common/names.instructions.md), and [qlty.instructions.md](instructions/qlty/qlty.instructions.md). Read the others when you work on the files they apply to:
 
