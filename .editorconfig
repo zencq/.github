@@ -516,6 +516,16 @@ csharp_style_var_when_type_is_apparent = false:silent
 dotnet_diagnostic.IDE0007.severity = silent
 dotnet_diagnostic.IDE0008.severity = silent
 
+# Guard clauses stay ifs with early returns: a chain of ternaries, one with a throw in it, reads worse (IDE0045, IDE0046).
+dotnet_style_prefer_conditional_expression_over_assignment = false:silent
+dotnet_style_prefer_conditional_expression_over_return = false:silent
+dotnet_diagnostic.IDE0045.severity = none
+dotnet_diagnostic.IDE0046.severity = none
+
+# Builder and registration calls return their object only for chaining; ignoring it needs no discard (IDE0058).
+csharp_style_unused_value_expression_statement_preference = discard_variable:silent
+dotnet_diagnostic.IDE0058.severity = none
+
 # Expression bodies only when they fit on a single line (IDE0021, IDE0022, IDE0023, IDE0024, IDE0061).
 csharp_style_expression_bodied_constructors = when_on_single_line:warning
 csharp_style_expression_bodied_local_functions = when_on_single_line:warning
