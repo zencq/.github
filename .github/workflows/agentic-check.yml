@@ -1,9 +1,8 @@
 name: agentic.check
 
 # Reusable: a repository calls it on a schedule (see docs/README.md). It runs agentic.check with --yes, which installs
-# every recommendation, removes what the skip lists name (config/agentic-check-skip.txt here and
-# .github/agentic-skip.txt in the repository), and opens or updates one pull request on the branch chore/agentic-check
-# when anything changed.
+# every recommendation, removes what the skip lists name (.github/workflows/config/agentic-check-skip.txt, here and in
+# the repository), and opens or updates one pull request on the branch chore/agentic-check when anything changed.
 on:
   workflow_call:
     inputs:
@@ -62,7 +61,9 @@ jobs:
 
       - name: Remove Skipped Items
         working-directory: repository
-        run: bash ../shared/.github/workflows/scripts/agentic-check-skip.sh ../shared/.github/workflows/config/agentic-check-skip.txt .github/agentic-skip.txt
+        env:
+          SKIP_LIST: .github/workflows/config/agentic-check-skip.txt
+        run: bash ../shared/.github/workflows/scripts/agentic-check-skip.sh "../shared/$SKIP_LIST" "$SKIP_LIST"
 
       - name: Open Pull Request
         working-directory: repository
@@ -89,5 +90,5 @@ jobs:
           if [ -z "$open_pr" ]; then
             gh pr create --base "$BASE" --head "$BRANCH" \
               --title "chore: update the agentic.check directives and skills" \
-              --body "Applies the recommendations of [agentic.check](https://github.com/VincentH-Net/dotnet-agentic-engineering), except what \`.github/workflows/config/agentic-check-skip.txt\` in [zencq/.github](https://github.com/zencq/.github) and \`.github/agentic-skip.txt\` here skip. Don't edit the directive blocks or skills here; to leave one out, add it to a skip list."
+              --body "Applies the recommendations of [agentic.check](https://github.com/VincentH-Net/dotnet-agentic-engineering), except what the skip lists \`.github/workflows/config/agentic-check-skip.txt\` in [zencq/.github](https://github.com/zencq/.github) and here name. Don't edit the directive blocks or skills here; to leave one out, add it to a skip list."
           fi

@@ -40,7 +40,7 @@ On every push to `main` that changes the shared files, `.github/workflows/sync-s
 
 [agentic.check](https://github.com/VincentH-Net/dotnet-agentic-engineering) installs agent directives (blocks in `AGENTS.md`), skills (`.agents/skills/`, `.claude/skills/`), and its tool pin (`.config/dotnet-tools.json`) in each .NET repository. The reusable workflow `.github/workflows/agentic-check.yml` keeps them current: it runs `agentic.check --yes`, removes what the skip lists name with `.github/workflows/scripts/agentic-check-skip.sh`, and opens or updates one pull request on the branch `chore/agentic-check`.
 
-- `--yes` installs every recommendation and doesn't remember what was deselected, so anything left out goes into a skip list: `.github/workflows/config/agentic-check-skip.txt` here for what no repository uses, and `.github/agentic-skip.txt` in a repository for what only it leaves out. The shared list describes the format.
+- `--yes` installs every recommendation and doesn't remember what was deselected, so anything left out goes into a skip list, `.github/workflows/config/agentic-check-skip.txt`: the one here for what no repository uses, and one at the same path in a repository for what only it leaves out. The shared list describes the format.
 - A repository calls the workflow from its own `.github/workflows/agentic-check.yml`, pinned to a commit of this repository like any action:
 
   ```yaml
