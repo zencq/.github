@@ -81,6 +81,8 @@ jobs:
           CONFIG_PATH: .github/workflows/config/sync-shared-resources.yml
           COMMIT_PREFIX: "chore:"
           COMMIT_EACH_FILE: false
+          # Each run updates the open pull request of this branch. A new prefix opens new pull requests next to the
+          # ones on the old branch, so close those and delete their branches when it changes.
           BRANCH_PREFIX: sync/shared-resources
           PR_LABELS: false
           PR_BODY: |
