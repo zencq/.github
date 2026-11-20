@@ -32,7 +32,7 @@ applyTo: "**/compose.yaml,**/Dockerfile,**/.dockerignore,**/*.env.example"
 - Before merging a major update (a minor one below 1.0, where the minor version is the breaking one), read its upgrade notes: it can bring migrations or, for a database, need a dump and a restore.
 - Our own applications are built by the release workflow of their repository and pushed to `ghcr.io/zencq/<app>` with the tags `<major>.<minor>.<patch>`, `<major>.<minor>`, (from 1.0) `<major>`, and `latest`. A stack runs them with `image:` and the tag `latest`, never with `build:`: their releases are our own, so we know when one needs more than a pull, and their packages are private, which Dependabot can't read anyway. To go back to an earlier release, set its `<major>.<minor>.<patch>` tag until a fixed one is out.
 - A merged update reaches the server only with `docker compose up --pull always --detach` in the stack's folder.
-- Every service has `restart: unless-stopped` and a `healthcheck`. Images without a shell (distroless) need the `CMD` form; `CMD-SHELL` fails there.
+- Every service has `restart: unless-stopped` and a health check. When its image declares a `HEALTHCHECK` (as our own images do), Compose uses that one, so leave `healthcheck` out of `compose.yaml`; a copy there drifts when the application changes. Otherwise add a `healthcheck`: images without a shell (distroless) need the `CMD` form; `CMD-SHELL` fails there.
 - A `Dockerfile` builds in stages, runs as a non-root user, and declares a `HEALTHCHECK` against the application's health endpoint.
 
 ## Postgres
