@@ -12,3 +12,6 @@ This repository's own files:
 | File | Applies to |
 | --- | --- |
 | @.github/instructions/commands.instructions.md | everything (Qlty, the layer indexes, the editorconfig script, starting the sync by hand) |
+
+<!-- Tools add their own blocks below this line and fix their style themselves, so markdownlint skips them. -->
+<!-- markdownlint-disable -->
