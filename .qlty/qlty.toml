@@ -4,6 +4,38 @@
 # Or for a full reference, visit https://qlty.sh/d/qlty-toml
 config_version = "0"
 
+# A list here replaces Qlty's default exclusions, so it repeats them (as of Qlty 0.665) before our own.
+exclude_patterns = [
+  "*_min.*",
+  "*-min.*",
+  "*.min.*",
+  "**/.yarn/**",
+  "**/*.d.ts",
+  "**/bower_components/**",
+  "**/build/**",
+  "**/cache/**",
+  "**/config/**",
+  "**/db/**",
+  "**/deps/**",
+  "**/dist/**",
+  "**/extern/**",
+  "**/external/**",
+  "**/fixtures/**",
+  "**/generated/**",
+  "**/Godeps/**",
+  "**/gradlew/**",
+  "**/mvnw/**",
+  "**/node_modules/**",
+  "**/protos/**",
+  "**/seed/**",
+  "**/target/**",
+  "**/testdata/**",
+  "**/vendor/**",
+  # Agent skills that tools such as agentic.check install and replace; their style isn't ours to fix.
+  ".agents/skills/**",
+  ".claude/skills/**",
+]
+
 test_patterns = [
   "tests/**",
 ]
