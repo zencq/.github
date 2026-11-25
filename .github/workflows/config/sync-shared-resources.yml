@@ -19,6 +19,7 @@ group:
       zencq/relay
       zencq/zenin-common
       zencq/zenin-integration-nms
+      zencq/zenin-integration-nms-assets
       zencq/zenin-integration-nms-procedural
       zencq/articuno
 
@@ -33,6 +34,7 @@ group:
       zencq/nomnom
       zencq/zenin-common
       zencq/zenin-integration-nms
+      zencq/zenin-integration-nms-assets
       zencq/zenin-integration-nms-procedural
       zencq/articuno
 
@@ -68,6 +70,7 @@ group:
       zencq/nomnom
       zencq/zenin-common
       zencq/zenin-integration-nms
+      zencq/zenin-integration-nms-assets
       zencq/zenin-integration-nms-procedural
       zencq/articuno
       zencq/relay
@@ -83,10 +86,11 @@ group:
       zencq/articuno
       zencq/relay
 
-  # zenin-integration-nms adds exclude_patterns
+  # zenin-integration-nms and zenin-integration-nms-assets add exclude_patterns
   - files:
       - source: .qlty/qlty.toml
         dest: .qlty/qlty.toml
         replace: false
     repos: |
       zencq/zenin-integration-nms
+      zencq/zenin-integration-nms-assets
