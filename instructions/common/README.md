@@ -9,7 +9,7 @@ Read the files that apply to everything before any task, and the others when you
 | File | Applies to | Topics |
 | --- | --- | --- |
 | @changes.instructions.md | everything | Scope of changes |
-| @commits.instructions.md | everything | Commits: Messages, Branches |
+| @commits.instructions.md | everything | Commits: Messages, Branches, Shared checkout |
 | @dependabot.instructions.md | everything | Dependabot |
 | @instructions.instructions.md | `.github/instructions/**`, `.github/copilot-instructions.md`, `AGENTS.md`, `CLAUDE.md` | Authoring instructions: Shared and repository files, Files, Content, Maintenance, Entry points |
 | @license.instructions.md | everything | License |

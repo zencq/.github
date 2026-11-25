@@ -16,4 +16,11 @@ applyTo: "**"
 
 ## Branches
 
+- While a repository is private, commit straight to `main`. Once it is public, every change goes through a pull request from its own branch. Check the visibility with `gh repo view --json visibility`.
 - Name a branch after its change: the commit type, a slash, and a few lowercase words joined by hyphens (`feat/order-export`, `fix/rate-limit-retry`). Never use a generated or random name, such as an agent's default worktree branch.
+
+## Shared checkout
+
+- Several sessions and people may work in the same checkout at the same time. Commit only your own paths (`git commit -- <paths>`), never with a plain `git commit`, which also takes what someone else staged.
+- Don't leave your changes staged between steps; stage and commit them together.
+- Leave other people's uncommitted changes and untracked files as they are.
