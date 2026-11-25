@@ -11,7 +11,7 @@ applyTo: "**/*.cs"
 - Tests use MSTest, in a test project per project under `/tests`.
 - Test method names describe behavior, as `Method_Scenario_Expectation`, with `// Arrange / // Act / // Assert` sections; test file and class names mirror the class under test (`Foo.cs` becomes `FooTests.cs`). A class split into partial files gets a partial test class split the same way: `OrderBook.Export.cs` is tested in `OrderBookTests.Export.cs`, and `OrderBookTests.cs` holds the tests of `OrderBook.cs` plus the fixtures and helpers that all parts share.
 - Don't call real web services. Move request-independent logic into `internal` methods and test them directly.
-- Tests run in parallel at method level (`[assembly: Parallelize(Scope = ExecutionScope.MethodLevel)]` in each test project), so they must not share mutable state.
+- Tests run in parallel at method level (`[assembly: Parallelize(Scope = ExecutionScope.MethodLevel)]` in each test project), so they must not share mutable state. A test that measures time is `[DoNotParallelize]`, since tests running at the same time would distort it.
 - Each project under test exposes its internals to its test project via `InternalsVisibleTo`.
 
 ## Writing tests
